@@ -7,6 +7,7 @@ This project is a demonstration of a CRUD API built using Golang, PostgreSQL for
 
 The project is structured as follows:
 
+```plaintext
 myapp/
 ├── cmd/
 │   └── api/
@@ -22,11 +23,11 @@ myapp/
 │   │   │   └── migrate.go
 │   │   └── postgres.go
 │   ├── handlers/
-│   │   ├── user.go
+│   │   └── user.go
 │   ├── models/
-│   │   ├── user.go
+│   │   └── user.go
 │   ├── repository/
-│   │   ├── user.go
+│   │   └── user.go
 │   ├── router/
 │   │   └── router.go
 │   └── utils/
@@ -37,7 +38,7 @@ myapp/
 │       └── logger.go
 ├── go.mod
 └── go.sum
-
+```
 ### Key Components
 
 - **cmd/api/main.go**: Entry point of the application. Initializes configuration, database connection, and starts the server.
@@ -61,12 +62,13 @@ myapp/
 ## Setup and Installation
 
 1. **Clone the repository**:
-   git clone <repository_url>
-   cd myapp
+   `git clone <repository_url>`
+   `cd myapp`
 
 2. **Set up the database**:
    - Ensure PostgreSQL is installed and running.
    - Create a `.env` file in the root directory with the following configuration:
+```plaintext     
      DB_HOST=localhost
      DB_PORT=5432
      DB_USER=your_db_user
@@ -75,31 +77,42 @@ myapp/
      DB_SSLMODE=disable
      SERVER_PORT=8080
      JWT_SECRET_KEY=your_secret_key
+```
 
 3. **Database Migration**:
    - Run the database migration to set up the required tables:
-     go run cmd/api/main.go migrate
+
+     `go run cmd/api/main.go migrate`
 
 4. **Start the API server**:
    - Start the Golang server which listens on `SERVER_PORT` defined in the `.env` file (default is 8080):
-     go run cmd/api/main.go
+
+     `go run cmd/api/main.go`
 
 ## API Endpoints
 
 ### User Management
 
 - **POST /register**: Register a new user.
-
-  {
-    "username": "example",
-    "password": "password"
-  }
+  `{
+  "username": "example",
+  "password": "password",
+  "first_name": "John",
+  "last_name": "Doe",
+  "email": "example@example.com",
+  "phone_number": "+1234567890",
+  "address": "123 Main St",
+  "city": "Anytown",
+  "state": "Anystate",
+  "country": "Anycountry",
+  "zip_code": "12345",
+  }`
 
 - **POST /login**: Authenticate and generate JWT token.
-  {
+  `{
     "username": "example",
     "password": "password"
-  }
+  }`
   Successful login response includes a JWT token in the `Authorization` header.
 
 ## Dependencies
